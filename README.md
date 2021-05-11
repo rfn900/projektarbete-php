@@ -1,6 +1,6 @@
 # projektarbete-php
 
-Kravspecifikation
+##Kravspecifikation
 1. Ni måste använda Dependency injection vid utformningen av lösningen.
 2. Systemet skall kunna hantera produkter, kunder och beställningar.
 3. En kund skall kunna skapa ett konto och logga in i butiken.
@@ -12,12 +12,12 @@ Kravspecifikation
   • Ta bort produkter.
   • Se alla beställningar.
   • Ändra status på en beställning till ”Skickad”.
-Skriftlig Inlämning (Individuell inlämning)
+##Skriftlig Inlämning (Individuell inlämning)
   • Skriv en individuell rapport (valfritt antal sidor).
-Exempel på rapportens utformning finns på nästa sida.
+##Exempel på rapportens utformning finns på nästa sida.
   • Klistra in en länk till källkoden (GitHub – Ditt eget Repo) i rapporten.
   • Skriv dina egna reflektioner kring uppgiften i rapporten.
-Lätt/svårt/roligt/tråkigt osv. och varför?
+##Lätt/svårt/roligt/tråkigt osv. och varför?
   • Spara dokumentet som:
-WEBB20-Backend-2-PHP-DITT-NAMN-Uppgift-03.pdf
+##WEBB20-Backend-2-PHP-DITT-NAMN-Uppgift-03.pdf
   • Deadline att lämna in rapporten 2021-05-28 kl. 16.00.
