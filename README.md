@@ -8,11 +8,11 @@
 5. - [ ] En admin skall kunna logga in i en adminpanel.
 
 6. En admin skall kunna göra följande via adminpanelen:
-  * - [ ] Skapa nya produkter.
-  * - [ ] Uppdatera befintliga produkter.
-  * - [ ] Ta bort produkter.
-  * - [ ] Se alla beställningar.
-  * - [ ] Ändra status på en beställning till ”Skickad”.
+   - [ ] Skapa nya produkter.
+   - [ ] Uppdatera befintliga produkter.
+   - [ ] Ta bort produkter.
+   - [ ] Se alla beställningar.
+   - [ ] Ändra status på en beställning till ”Skickad”.
 
 ## Skriftlig Inlämning (Individuell inlämning)
   * Skriv en individuell rapport (valfritt antal sidor).
