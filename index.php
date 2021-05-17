@@ -5,7 +5,7 @@ require_once ("models/Model.php");
 //require_once ("models/OrderModel.php");
 
 //require_once ("views/View.php");
-require_once ("views/CreateUserView.php");
+require_once ("views/View.php");
 
 require_once ("controllers/Controller.php");
 //require_once ("controllers/OrderController.php");

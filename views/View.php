@@ -45,10 +45,10 @@ class View
         );
     }
 
-    public function viewErrorMessage()
+    public function viewErrorMessage($errorMessage)
     {
         $this->printMessage(
-            "<h4>Misslyckades, kunden finns redan. Välj ett annat användarnamn. </h4>",
+            "<h4>$errorMessage</h4>",
             "warning"
         );
     }
@@ -65,4 +65,30 @@ class View
 
         echo $html;
     }
+
+    public function viewLoginUser() {
+      $html = <<<HTML
+        
+            <div class="col-md-12">
+              <form method="post" action="">
+                <div class="form-group">
+                  <label for="username">
+                  <input type="text" id="username" name="username"/>
+                  <input type="submit" value="logga in">
+                </div>
+              </form>
+            </div>  <!-- col -->
+
+        HTML;
+
+        echo $html;
+    }
+
+    public function viewAllMovies($movies)
+    {
+        foreach ($movies as $movie) {
+            $this->viewOneMovie($movie);
+        }
+    }
+
 }

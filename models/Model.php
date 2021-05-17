@@ -32,4 +32,17 @@ class Model
       
       return $user;
     }
+
+    public function loginUser($username) {
+      //check if user exists
+      $user = $this->fetchUserByName($username);
+      if (!$user) return false;
+      return $user;
+    }
+
+    public function fetchAllProducts()
+    {
+        $products = $this->db->select("SELECT * FROM product");
+        return $products;
+    }
 }
