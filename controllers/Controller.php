@@ -28,6 +28,7 @@ class Controller
 
     private function login() {
       $this->view->viewHeader("Välkommen");
+      $this->view->viewCreateUser();
       $this->view->viewFooter();
     }
 }
