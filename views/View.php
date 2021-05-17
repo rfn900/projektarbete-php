@@ -55,8 +55,7 @@ class View
 
     public function printMessage($message, $messageType = "danger")
     {
-        $html = <<< HTML
-
+        $html = <<<HTML
             <div class="my-2 alert alert-$messageType">
                 $message
             </div>

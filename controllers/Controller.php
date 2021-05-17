@@ -23,7 +23,7 @@ class Controller
             case "register":
                 $this->registerUser();
                 break;
-            case "":
+            case "products":
                 $this->displayProducts();
                 break;
         }
@@ -33,8 +33,7 @@ class Controller
       $this->view->viewHeader("Välkommen");
 
       if ($_SERVER['REQUEST_METHOD'] === 'POST')
-          $this->processUserForm();
-
+      $this->processUserForm();
       $this->view->viewCreateUser();
       $this->view->viewFooter();
     }

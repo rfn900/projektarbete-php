@@ -10,7 +10,7 @@ require_once ("views/View.php");
 require_once ("controllers/Controller.php");
 //require_once ("controllers/OrderController.php");
 
-$database   = new Database("webbshop", "root" , "");
+$database   = new Database("webbshop", "root" , "root");
 
 $model      = new Model($database);
 $view       = new View();
