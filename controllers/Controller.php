@@ -76,9 +76,9 @@ class Controller
     private function displayProducts() {
 
       $this->view->viewHeader("Webbshop");
-        $products = $this->model->fetchAllProducts();
-        $this->view->viewAllProducts($products);
-        $this->view->viewFooter();
+      $products = $this->model->fetchAllProducts();
+      $this->view->viewAllProducts($products);
+      $this->view->viewFooter();
     }
 
     public function sanitize($text)

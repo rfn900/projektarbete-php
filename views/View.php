@@ -89,18 +89,16 @@ class View
         $html = <<<HTML
         
             <div class="col-md-6">
-                <a href="?page=order&id=$movie[film_id]">
+                <p>Test product</p>
                     <div class="card m-1">
-                        <img class="card-img-top" src="images/$movie[image]" 
-                            alt="$movie[title]">
+                        <img class="card-img-top" src="./img/catsock.png" 
+                            alt="">
                         <div class="card-body">
                             <div class="card-title text-center">
-                                <h4>$movie[title]</h4>
-                                <h5>Pris: $movie[price] kr</h5>
+                                <h4>$product[name]</h4>
                             </div>
                         </div>
                     </div>
-                </a>
             </div>  <!-- col -->
 
         HTML;
