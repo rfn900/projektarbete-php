@@ -84,10 +84,34 @@ class View
         echo $html;
     }
 
-    public function viewAllMovies($movies)
+    public function viewOneProduct($product)
     {
-        foreach ($movies as $movie) {
-            $this->viewOneMovie($movie);
+        $html = <<<HTML
+        
+            <div class="col-md-6">
+                <a href="?page=order&id=$movie[film_id]">
+                    <div class="card m-1">
+                        <img class="card-img-top" src="images/$movie[image]" 
+                            alt="$movie[title]">
+                        <div class="card-body">
+                            <div class="card-title text-center">
+                                <h4>$movie[title]</h4>
+                                <h5>Pris: $movie[price] kr</h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>  <!-- col -->
+
+        HTML;
+
+        echo $html;
+    }
+
+    public function viewAllProducts($products)
+    {
+        foreach ($products as $product) {
+            $this->viewOneProduct($product);
         }
     }
 
