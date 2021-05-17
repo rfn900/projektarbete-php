@@ -36,13 +36,33 @@ class View
 
         echo $html;
     }
-
-
-    public function viewAllMovies($movies)
+    
+    public function viewConfirmMessage()
     {
-        foreach ($movies as $movie) {
-            $this->viewOneMovie($movie);
-        }
+        $this->printMessage(
+            "<h4>Användare skapad</h4>",
+            "success"
+        );
     }
 
+    public function viewErrorMessage()
+    {
+        $this->printMessage(
+            "<h4>Misslyckades, kunden finns redan. Välj ett annat användarnamn. </h4>",
+            "warning"
+        );
+    }
+
+    public function printMessage($message, $messageType = "danger")
+    {
+        $html = <<< HTML
+
+            <div class="my-2 alert alert-$messageType">
+                $message
+            </div>
+
+        HTML;
+
+        echo $html;
+    }
 }

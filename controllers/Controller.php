@@ -28,7 +28,30 @@ class Controller
 
     private function login() {
       $this->view->viewHeader("Välkommen");
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST')
+          $this->processUserForm();
+
       $this->view->viewCreateUser();
       $this->view->viewFooter();
+    }
+
+    private function processUserForm() {
+      $user = $this->sanitize($_POST['username']);
+      $confirm = $this->model->saveUser($user);
+
+      if ($confirm) {
+        $this->view->viewConfirmMessage();
+      } else {
+        $this->view->viewErrorMessage();
+      }
+    }
+
+    public function sanitize($text)
+    {
+        $text = trim($text);
+        $text = stripslashes($text);
+        $text = htmlspecialchars($text);
+        return $text;
     }
 }
