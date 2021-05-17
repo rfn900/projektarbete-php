@@ -25,7 +25,7 @@ class Model
       $statement = "INSERT INTO user (name, admin) VALUES (:name, :admin)";
       $parameters = array(
         ':name' => $username,
-        ':admin' => false
+        ':admin' => 0
       );
       
       $user = $this->db->insert($statement, $parameters);
