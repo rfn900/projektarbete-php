@@ -22,7 +22,15 @@ class DashboardModel
      */
     public function createProduct($product)
     {
-        return null;
+        $statement = "INSERT INTO product (name, image, description, price) VALUES (:name, :image, :description, :price)";
+        $parameters = array(
+            ":name" => $product["name"],
+            ":image" => $product["image"],
+            ":description" => $product["description"],
+            ":price" => $product["price"]
+        );
+        $lastInsertId = $this->db->insert($statement, $parameters);
+        return $lastInsertId;
     }
 
     /**

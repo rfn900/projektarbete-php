@@ -31,11 +31,32 @@ class DashboardController
         if ($_SESSION['isAdmin']) {
             $this->view->viewHeader("Dashboard");
             $this->view->createProductForm();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $this->processProductForm();
+            }
             $products = $this->model->fetchAllProducts();
             $this->view->viewAllProducts($products);
             $this->view->viewFooter();
         } else {
             echo 'Not admin';
+        }
+    }
+
+    private function processProductForm()
+    {
+        $product = array(
+            "name" => $this->sanitize($_POST['name']),
+            "image" => $this->sanitize($_POST['image']),
+            "description" => $this->sanitize($_POST['description']),
+            "price" => $this->sanitize($_POST['price'])
+        );
+
+        $confirm = $this->model->createProduct($product);
+
+        if ($confirm) {
+            echo "Det duger.";
+        } else {
+            echo "Helvete.";
         }
     }
 
