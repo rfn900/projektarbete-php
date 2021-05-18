@@ -11,12 +11,13 @@
 </head>
 
 <body class="container">
+    <div class="navbar">
+        <a href="?page=login">login</a>
+        <a href="">Home</a>
+    </div>
     <h1 class="text-center">
-    <a href="index.php" >
-    Webbshop
-    </a>
+        <a href="index.php">
+            Webbshop
+        </a>
     </h1>
-    <h2 class="text-center"><?php echo "Webbshopppppp" ?></h2>
     <div class="row">
-    
-    
