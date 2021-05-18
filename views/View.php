@@ -89,14 +89,18 @@ class View
         $html = <<<HTML
         
             <div class="col-md-6">
-                <p>Test product</p>
                     <div class="card m-1">
-                        <img class="card-img-top" src="./img/catsock.png" 
-                            alt="">
+                        <img class="card-img-top" src="./img/$product[image]" 
+                            alt="$product[image]">
                         <div class="card-body">
-                            <div class="card-title text-center">
+                            <div class="card-title">
                                 <h4>$product[name]</h4>
                             </div>
+                            <div class="card-text">
+                              <p>$product[description]</p>
+                              <p>$product[price] SEK</p>
+                            </div>
+                            <a class="btn btn-primary" href="">Lägg till varukorg</a>
                         </div>
                     </div>
             </div>  <!-- col -->
