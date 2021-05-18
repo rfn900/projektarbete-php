@@ -3,7 +3,7 @@
 class View
 {
 
-    public function viewHeader($title)
+    public function viewHeader()
     {
         include_once("views/include/header.php");
     }
@@ -11,11 +11,6 @@ class View
     public function viewFooter()
     {
         include_once("views/include/footer.php");
-    }
-
-    public function viewAboutPage()
-    {
-        include_once("views/include/about.php");
     }
 
     public function viewCreateUser()
@@ -87,10 +82,9 @@ class View
     public function viewOneProduct($product)
     {
         $html = <<<HTML
-        
             <div class="col-md-6">
                     <div class="card m-1">
-                        <img class="card-img-top" src="./img/$product[image]" 
+                        <img class="card-img-top" src="$product[image]" 
                             alt="$product[image]">
                         <div class="card-body">
                             <div class="card-title">

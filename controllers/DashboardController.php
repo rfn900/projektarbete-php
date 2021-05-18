@@ -29,7 +29,11 @@ class DashboardController
     public function dashboard()
     {
         if ($_SESSION['isAdmin']) {
-            echo 'Admin here';
+            $this->view->viewHeader("Dashboard");
+            $this->view->createProductForm();
+            $products = $this->model->fetchAllProducts();
+            $this->view->viewAllProducts($products);
+            $this->view->viewFooter();
         } else {
             echo 'Not admin';
         }
