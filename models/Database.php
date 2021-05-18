@@ -10,7 +10,7 @@
 
     private $conn = null;
     
-    public function __construct($database, $username="root", $password="", $servername="localhost")
+    public function __construct($database, $username="user", $password="user", $servername="localhost")
     {
         // Data Source Name
         $dsn = "mysql:host=$servername;dbname=$database;charset=UTF8";

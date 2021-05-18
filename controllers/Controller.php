@@ -67,7 +67,8 @@ class Controller
       $confirm = $this->model->loginUser($user);
 
       if ($confirm) {
-        echo "going to webshop page";
+        // auth successful
+        $_SESSION['user'] = $user;
       } else {
         $this->view->viewErrorMessage("login failed");
       }
