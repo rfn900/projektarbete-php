@@ -36,7 +36,7 @@ class View
 
         echo $html;
     }
-    
+
     public function viewConfirmMessage()
     {
         $this->printMessage(
@@ -55,8 +55,7 @@ class View
 
     public function printMessage($message, $messageType = "danger")
     {
-        $html = <<< HTML
-
+        $html = <<<HTML
             <div class="my-2 alert alert-$messageType">
                 $message
             </div>
@@ -66,8 +65,9 @@ class View
         echo $html;
     }
 
-    public function viewLoginUser() {
-      $html = <<<HTML
+    public function viewLoginUser()
+    {
+        $html = <<<HTML
         
             <div class="col-md-12">
               <form method="post" action="">
@@ -116,5 +116,4 @@ class View
             $this->viewOneProduct($product);
         }
     }
-
 }
