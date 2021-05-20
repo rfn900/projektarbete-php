@@ -14,6 +14,10 @@
     <div class="navbar">
         <a href="?page=login">login</a>
         <a href="">Home</a>
+        <?
+            if (isset($_SESSION["cart"]))
+            echo "<p>" . count($_SESSION["cart"]) . "</p>";
+        ?>
     </div>
     <h1 class="text-center">
         <a href="index.php">

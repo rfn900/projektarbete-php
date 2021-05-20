@@ -94,7 +94,7 @@ class View
                               <p>$product[description]</p>
                               <p>$product[price] SEK</p>
                             </div>
-                            <a class="btn btn-primary" href="">Lägg till varukorg</a>
+                            <a class="btn btn-primary" href="?add-product=$product[id]">Lägg till varukorg</a>
                         </div>
                     </div>
             </div>  <!-- col -->
