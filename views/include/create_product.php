@@ -1,4 +1,4 @@
-<h4>Add a product here</h4>
+<h4><?php echo $_GET['page'] === "edit-product" ? "Update" : "Add"; ?> product here</h4>
 <form action="#" method="post" class="row mb-5">
     <div class="col-md-5">
         <input type="text" name="name" class="form-control mt-2" required placeholder="Product Name">

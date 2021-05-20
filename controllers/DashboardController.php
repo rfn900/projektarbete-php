@@ -20,6 +20,10 @@ class DashboardController
             case "dashboard":
                 $this->dashboard();
                 break;
+            case "edit-product":
+                $product_id = $_GET['id'] ?? "";
+                $this->editProduct($product_id);
+                break;
         }
     }
 
@@ -31,7 +35,7 @@ class DashboardController
         if ($_SESSION['isAdmin']) {
             $this->view->viewHeader("Dashboard");
             $this->view->createProductForm();
-            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $this->processProductForm();
             }
             $products = $this->model->fetchAllProducts();
@@ -60,6 +64,23 @@ class DashboardController
         }
     }
 
+    public function editProduct($product_id)
+    {
+        if (!$product_id) {
+            echo "You need to choose a product";
+            die();
+        }
+
+        $product = $this->model->fetchProductById($product_id);
+
+        if (!$product) {
+            echo "Product ID ($product_id) does not exist";
+        } else {
+            $this->view->viewHeader("Edit Product");
+            $this->view->createProductForm();
+            $this->view->viewFooter();
+        }
+    }
     public function sanitize($text)
     {
         $text = trim($text);

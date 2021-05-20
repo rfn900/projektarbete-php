@@ -15,6 +15,14 @@ class DashboardModel
         return $products;
     }
 
+    public function fetchProductById($id)
+    {
+        $statement = "SELECT * FROM product WHERE id = :id";
+        $params = array(":id" => $id);
+        $product = $this->db->select($statement, $params);
+        return $product[0] ?? false;
+    }
+
     /**
      * undocumented function
      *
@@ -40,7 +48,17 @@ class DashboardModel
      */
     public function updateProduct($product)
     {
-        return null;
+        $statement = "UPDATE product (name, image, description, price) 
+                        VALUES (:name, :image, :description, :price)
+                        WHERE id=:id";
+        $parameters = array(
+            ":id" => $product["id"],
+            ":name" => $product["name"],
+            ":image" => $product["image"],
+            ":description" => $product["description"],
+            ":price" => $product["price"]
+        );
+        $this->db->update($statement, $parameters);
     }
 
     /**
