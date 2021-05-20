@@ -48,8 +48,11 @@ class DashboardModel
      */
     public function updateProduct($product)
     {
-        $statement = "UPDATE product (name, image, description, price) 
-                        VALUES (:name, :image, :description, :price)
+        $statement = "UPDATE product SET  
+                        name=:name,
+                        image=:image,
+                        description=:description,
+                        price=:price
                         WHERE id=:id";
         $parameters = array(
             ":id" => $product["id"],
@@ -59,6 +62,7 @@ class DashboardModel
             ":price" => $product["price"]
         );
         $this->db->update($statement, $parameters);
+        return true;
     }
 
     /**

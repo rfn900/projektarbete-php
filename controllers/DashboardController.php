@@ -22,7 +22,7 @@ class DashboardController
                 break;
             case "edit-product":
                 $product_id = $_GET['id'] ?? "";
-                $this->editProduct($product_id);
+                $this->renderEditProduct($product_id);
                 break;
         }
     }
@@ -36,7 +36,7 @@ class DashboardController
             $this->view->viewHeader("Dashboard");
             $this->view->createProductForm();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $this->processProductForm();
+                $this->processProductForm("create");
             }
             $products = $this->model->fetchAllProducts();
             $this->view->viewAllProducts($products);
@@ -46,26 +46,33 @@ class DashboardController
         }
     }
 
-    private function processProductForm()
+    private function processProductForm($action)
     {
         $product = array(
+            "id" => $this->sanitize($_GET['id']),
             "name" => $this->sanitize($_POST['name']),
             "image" => $this->sanitize($_POST['image']),
             "description" => $this->sanitize($_POST['description']),
             "price" => $this->sanitize($_POST['price'])
         );
-
-        $confirm = $this->model->createProduct($product);
+        if ($action === "create")
+            $confirm = $this->model->createProduct($product);
+        else if ($action === "edit")
+            $confirm = $this->model->updateProduct($product);
 
         if ($confirm) {
-            echo "Det duger.";
+            echo "Product updated";
         } else {
-            echo "Helvete.";
+            echo "Update failed";
         }
     }
 
-    public function editProduct($product_id)
+    public function renderEditProduct($product_id)
     {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->processProductForm("edit");
+        }
         if (!$product_id) {
             echo "You need to choose a product";
             die();
