@@ -13,12 +13,38 @@ class DashboardView
         include_once("views/include/footer.php");
     }
 
-    public function createProductForm()
+
+    public function createProductForm($product = null)
     {
-        include_once("views/include/create_product.php");
+        $test = $_GET['page'] === "edit-product" ? "Update" : "Add";
+        $name = $_GET['page'] === "edit-product" ? $product['name'] : "";
+        $image = $_GET['page'] === "edit-product" ? $product['image'] : "";
+        $description = $_GET['page'] === "edit-product" ? $product['description'] : "";
+        $price = $_GET['page'] === "edit-product" ? $product['price'] : "";
+
+        $html = <<<HTML
+            <h4> $test product here</h4>
+            <form action="#" method="post" class="row mb-5">
+                <div class="col-md-5">
+                    <input type="text" value="$name" name="name" class="form-control mt-2" required placeholder="Product Name">
+                </div>
+                <div class="col-md-5">
+                    <input type="text" value="$image" name="image" class="form-control mt-2" required placeholder="Image URL">
+                </div>
+                <div class="col-md-5">
+                    <input type="text" value="$description" name="description" class="form-control mt-2" required placeholder="Description">
+                </div>
+                <div class="col-md-5">
+                    <input type="text" value="$price" name="price" class="form-control mt-2" required placeholder="Price">
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="form-control mt-2 btn btn-outline-primary" value="Save Product">
+                </div>
+            </form>      
+        HTML;
+
+        echo $html;
     }
-
-
     // Bra att läsa om PHP Templating och HEREDOC syntax!
     // https://css-tricks.com/php-templating-in-just-php/
 

@@ -77,7 +77,7 @@ class DashboardController
             echo "Product ID ($product_id) does not exist";
         } else {
             $this->view->viewHeader("Edit Product");
-            $this->view->createProductForm();
+            $this->view->createProductForm($product);
             $this->view->viewFooter();
         }
     }
