@@ -14,9 +14,9 @@
     <div class="navbar">
         <a href="?page=login">login</a>
         <a href="">Home</a>
-        <?
+        <?php
             if (isset($_SESSION["cart"]))
-            echo "<p>" . count($_SESSION["cart"]) . "</p>";
+            echo "<p>In cart: " . count($_SESSION["cart"]) . " items" . "</p>";
         ?>
     </div>
     <h1 class="text-center">
