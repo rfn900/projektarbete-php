@@ -81,4 +81,41 @@ class DashboardView
             $this->viewOneProduct($product);
         }
     }
+
+    public function viewConfirmMessage($action)
+    {
+        $message = $action === "edit" ? "Product updated" : "Product Created";
+        $this->printMessage(
+            "<h4>$message</h4>",
+            "success",
+            $action
+        );
+    }
+
+    public function viewErrorMessage($action)
+    {
+        $message = $action === "edit" ? "Update failed" : "Product updated";
+        $this->printMessage(
+            "<h4>$message</h4>",
+            "warning",
+            $action
+        );
+    }
+
+    public function printMessage($message, $messageType = "danger", $action)
+    {
+        $link = $action === "edit" ?
+            "<p><a href='?page=dashboard'>Back to Dashboard</a></p>" :
+            "";
+
+        $html = <<<HTML
+            <div class="my-2 alert col-md-12 alert-$messageType">
+                $message
+            </div>
+            $link
+
+        HTML;
+
+        echo $html;
+    }
 }

@@ -77,6 +77,6 @@ class DashboardModel
             ":id" => $product_id
         );
         $this->db->delete($statement, $params);
-        // redirect to dashboard
+        header("Location: ?page=dashboard");
     }
 }

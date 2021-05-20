@@ -52,8 +52,9 @@ class DashboardController
 
     private function processProductForm($action)
     {
+        $id = $_GET['id'] ?? "";
         $product = array(
-            "id" => $this->sanitize($_GET['id']),
+            "id" => $this->sanitize($id),
             "name" => $this->sanitize($_POST['name']),
             "image" => $this->sanitize($_POST['image']),
             "description" => $this->sanitize($_POST['description']),
@@ -65,19 +66,15 @@ class DashboardController
             $confirm = $this->model->updateProduct($product);
 
         if ($confirm) {
-            echo "Product updated";
+            $this->view->viewConfirmMessage($action);
         } else {
-            echo "Update failed";
+            $this->view->viewErrorMessage($action);
         }
     }
 
     public function renderEditProduct($product_id)
     {
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->processProductForm("edit");
-            // Redirect to Dashboard
-        }
         if (!$product_id) {
             echo "You need to choose a product";
             die();
@@ -91,6 +88,10 @@ class DashboardController
             $this->view->viewHeader("Edit Product");
             $this->view->createProductForm($product);
             $this->view->viewFooter();
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->processProductForm("edit");
+            // Redirect to Dashboard
         }
     }
 
