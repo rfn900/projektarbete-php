@@ -64,7 +64,7 @@ class DashboardView
                               <p>$product[price] SEK</p>
                             </div>
                             <a class="btn btn-warning" href="?page=edit-product&id=$product[id]">Edit</a>
-                            <a class="btn btn-danger" href="">Delete</a>
+                            <a class="btn btn-danger" href="?page=delete-product&id=$product[id]">Delete</a>
                         </div>
                     </div>
             </div>  <!-- col -->

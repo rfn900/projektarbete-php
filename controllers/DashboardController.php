@@ -24,6 +24,10 @@ class DashboardController
                 $product_id = $_GET['id'] ?? "";
                 $this->renderEditProduct($product_id);
                 break;
+            case "delete-product":
+                $product_id = $_GET['id'] ?? "";
+                $this->renderDeleteProduct($product_id);
+                break;
         }
     }
 
@@ -72,6 +76,7 @@ class DashboardController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->processProductForm("edit");
+            // Redirect to Dashboard
         }
         if (!$product_id) {
             echo "You need to choose a product";
@@ -88,6 +93,16 @@ class DashboardController
             $this->view->viewFooter();
         }
     }
+
+    public function renderDeleteProduct($product_id)
+    {
+        if (!$product_id) {
+            echo "You need to choose a product";
+            die();
+        }
+        $this->model->deleteProduct($product_id);
+    }
+
     public function sanitize($text)
     {
         $text = trim($text);

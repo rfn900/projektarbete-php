@@ -70,8 +70,13 @@ class DashboardModel
      *
      * @return void
      */
-    public function deleteProduct($product)
+    public function deleteProduct($product_id)
     {
-        return null;
+        $statement = "DELETE FROM product WHERE id = :id";
+        $params = array(
+            ":id" => $product_id
+        );
+        $this->db->delete($statement, $params);
+        // redirect to dashboard
     }
 }
