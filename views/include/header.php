@@ -13,10 +13,10 @@
 <body class="container">
     <div class="navbar">
         <a href="?page=login">login</a>
-        <a href="">Home</a>
+        <a href="?page=dashboard">dashboard</a>
         <?php
-            if (isset($_SESSION["cart"]))
-            echo "<p>In cart: " . count($_SESSION["cart"]) . " items" . "</p>";
+        if (isset($_SESSION["cart"]))
+            echo "<p><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($_SESSION["cart"]) . " items" . "</p>";
         ?>
     </div>
     <h1 class="text-center">
