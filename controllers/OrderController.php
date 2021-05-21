@@ -19,6 +19,14 @@ class OrderController
 
         if ($action == "addtocart")
             $this->addToCart();
+
+        $page = $_GET['page'] ?? "";
+
+        switch ($page) {
+            case "cart":
+                $this->cart();
+                break;
+        }
     }
 
     private function addToCart()
@@ -33,6 +41,37 @@ class OrderController
             array_push($_SESSION["cart"], $product_id);
         }
     }
+
+    /**
+     * undocumented function
+     *
+     */
+    private function cart()
+    {
+        $cart = $_SESSION['cart'] ?? array();
+        $preFormatedCart = array_count_values($cart);
+        $formatedCart = array();
+        foreach ($preFormatedCart as $key => $quantity) {
+            // fetch from database according to id
+            $product = $this->model->fetchProductById($key);
+            if ($product) {
+                $formatedCart[$key]['id'] = $product['id'];
+                $formatedCart[$key]['name'] = $product['name'];
+                $formatedCart[$key]['image'] = $product['image'];
+                $formatedCart[$key]['description'] = $product['description'];
+                $formatedCart[$key]['price'] = $product['price'];
+                $formatedCart[$key]['quantity'] = $quantity;
+            }
+        }
+        //echo "<pre>";
+        //print_r($formatedCart);
+        //echo "</pre>";
+
+        $this->view->viewHeader("Cart");
+        echo "This is cart";
+        $this->view->viewFooter();
+    }
+
 
     private function processOrderForm()
     {

@@ -10,13 +10,13 @@ class OrderModel
         $this->db = $database;
     }
 
-    public function fetchMovieById($id)
+    public function fetchProductById($id)
     {
-        $statement = "SELECT * FROM films WHERE film_id = :id";
+        $statement = "SELECT * FROM product WHERE id = :id";
         $params = array(":id" => $id);
-        $movie = $this->db->select($statement, $params);
+        $product = $this->db->select($statement, $params);
         //print_r($movie);
-        return $movie[0] ?? false;
+        return $product[0] ?? false;
     }
 
     public function fetchCustomerById($id)

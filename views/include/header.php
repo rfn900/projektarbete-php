@@ -16,7 +16,7 @@
         <a href="?page=dashboard">dashboard</a>
         <?php
         $cart = $_SESSION['cart'] ?? array();
-        echo "<p><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($cart) . " items" . "</p>";
+        echo "<a href='?page=cart'><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($cart) . " items" . "</a>";
         ?>
     </div>
     <h1 class="text-center">
