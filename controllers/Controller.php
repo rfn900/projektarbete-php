@@ -20,6 +20,9 @@ class Controller
       case "login":
         $this->login();
         break;
+      case "logout":
+        $this->logout();
+        break;
       case "register":
         $this->registerUser();
         break;
@@ -43,6 +46,7 @@ class Controller
   private function login()
   {
     $this->view->viewHeader("Logga in");
+    $this->view->viewNavBar();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
       $this->processLoginForm();
@@ -53,6 +57,13 @@ class Controller
       echo $this->view->viewErrorMessage('You are already logged in');
     }
     $this->view->viewFooter();
+  }
+
+  private function logout()
+  {
+    session_destroy();
+    session_unset();
+    header("Location: ?");
   }
 
   private function processUserForm()
@@ -84,6 +95,7 @@ class Controller
       } else {
         $_SESSION["isAdmin"] = false;
       }
+      header("Location: ?");
     } else {
       $this->view->viewErrorMessage("login failed");
     }
@@ -93,6 +105,7 @@ class Controller
   {
 
     $this->view->viewHeader("Webbshop");
+    $this->view->viewNavBar();
     $products = $this->model->fetchAllProducts();
     $this->view->viewAllProducts($products);
     $this->view->viewFooter();

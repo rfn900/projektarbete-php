@@ -38,6 +38,7 @@ class DashboardController
     {
         if ($_SESSION['isAdmin']) {
             $this->view->viewHeader("Dashboard");
+            $this->view->viewNavBar();
             $this->view->createProductForm();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $this->processProductForm("create");
@@ -86,6 +87,7 @@ class DashboardController
             echo "Product ID ($product_id) does not exist";
         } else {
             $this->view->viewHeader("Edit Product");
+            $this->view->viewNavBar();
             $this->view->createProductForm($product);
             $this->view->viewFooter();
         }

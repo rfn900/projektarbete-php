@@ -11,17 +11,3 @@
 </head>
 
 <body class="container">
-    <div class="navbar">
-        <a href="?page=login">login</a>
-        <a href="?page=dashboard">dashboard</a>
-        <?php
-        $cart = $_SESSION['cart'] ?? array();
-        echo "<a href='?page=cart'><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($cart) . " items" . "</a>";
-        ?>
-    </div>
-    <h1 class="text-center">
-        <a href="index.php">
-            Webbshop
-        </a>
-    </h1>
-    <div class="row">
