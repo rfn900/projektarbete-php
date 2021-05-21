@@ -47,7 +47,11 @@ class Controller
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
       $this->processLoginForm();
     // TODO: Fix if statement here
-    $this->view->viewLoginUser();
+    if (!isset($_SESSION['user'])) {
+      $this->view->viewLoginUser();
+    } else {
+      echo $this->view->viewErrorMessage('You are already logged in');
+    }
     $this->view->viewFooter();
   }
 
