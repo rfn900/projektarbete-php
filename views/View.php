@@ -94,7 +94,10 @@ class View
                               <p>$product[description]</p>
                               <p>$product[price] SEK</p>
                             </div>
-                            <a class="btn btn-primary" href="?add-product=$product[id]">Lägg till varukorg</a>
+                            <form action="?action=addtocart" method="POST">
+                                <input type="text" hidden value="$product[id]" name="id"/>
+                                <input type="submit" class="btn btn-primary" value="Lägg till varukorg">
+                            </form>
                         </div>
                     </div>
             </div>  <!-- col -->

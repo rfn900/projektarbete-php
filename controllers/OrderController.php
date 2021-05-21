@@ -15,17 +15,23 @@ class OrderController
 
     private function router()
     {
-        $product_id = $_GET['add-product'] ?? "";
-        if (isset($_GET['add-product']))
-            $this->addToCart($product_id);
+        $action = $_GET['action'] ?? "";
+
+        if ($action == "addtocart")
+            $this->addToCart();
     }
 
-    private function addToCart($product_id)
+    private function addToCart()
     {
+
         if (!isset($_SESSION["cart"])) {
             $_SESSION["cart"] = array();
         }
-        array_push($_SESSION["cart"], $product_id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $product_id = $this->sanitize($_POST["id"]);
+            // Redirect to Dashboard
+            array_push($_SESSION["cart"], $product_id);
+        }
     }
 
     private function processOrderForm()
