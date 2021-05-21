@@ -16,7 +16,8 @@ class OrderController
     private function router()
     {
         $product_id = $_GET['add-product'] ?? "";
-        $this->addToCart($product_id);
+        if (isset($_GET['add-product']))
+            $this->addToCart($product_id);
     }
 
     private function addToCart($product_id)
@@ -24,8 +25,7 @@ class OrderController
         if (!isset($_SESSION["cart"])) {
             $_SESSION["cart"] = array();
         }
-        if (isset($_GET['add-product']))
-            array_push($_SESSION["cart"], $product_id);
+        array_push($_SESSION["cart"], $product_id);
     }
 
     private function processOrderForm()
