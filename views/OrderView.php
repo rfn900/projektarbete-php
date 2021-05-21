@@ -6,6 +6,7 @@ class OrderView
     public function viewHeader($title)
     {
         include_once("views/include/header.php");
+        include_once("views/include/navbar.php");
     }
 
     public function viewFooter()
@@ -13,7 +14,7 @@ class OrderView
         include_once("views/include/footer.php");
     }
 
-    
+
     // Bra att läsa om PHP Templating och HEREDOC syntax!
     // https://css-tricks.com/php-templating-in-just-php/
 

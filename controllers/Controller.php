@@ -46,7 +46,6 @@ class Controller
   private function login()
   {
     $this->view->viewHeader("Logga in");
-    $this->view->viewNavBar();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
       $this->processLoginForm();
@@ -88,7 +87,6 @@ class Controller
     if ($user) {
       // auth successful
       $_SESSION['user'] = $user;
-      //$_SESSION['isAdmin'] = $user["admin"] ? true : false; 
       //Check is user is admin or not
       if ($user["admin"]) {
         $_SESSION["isAdmin"] = true;
@@ -105,7 +103,6 @@ class Controller
   {
 
     $this->view->viewHeader("Webbshop");
-    $this->view->viewNavBar();
     $products = $this->model->fetchAllProducts();
     $this->view->viewAllProducts($products);
     $this->view->viewFooter();
