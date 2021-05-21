@@ -15,8 +15,8 @@
         <a href="?page=login">login</a>
         <a href="?page=dashboard">dashboard</a>
         <?php
-        if (isset($_SESSION["cart"]))
-            echo "<p><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($_SESSION["cart"]) . " items" . "</p>";
+        $cart = $_SESSION['cart'] ?? array();
+        echo "<p><span class='bg-white px-2 py-2 rounded-circle'>🛒</span> " . count($cart) . " items" . "</p>";
         ?>
     </div>
     <h1 class="text-center">
