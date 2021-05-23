@@ -49,7 +49,7 @@ class Controller
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
       $this->processLoginForm();
-    // TODO: Fix if statement here
+
     if (!isset($_SESSION['user'])) {
       $this->view->viewLoginUser();
     } else {
