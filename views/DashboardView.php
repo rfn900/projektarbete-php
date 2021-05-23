@@ -104,10 +104,6 @@ class DashboardView
     }
 
 
-
-
-
-
     public function printMessage($message, $messageType = "danger", $action)
     {
         $link = $action === "edit" ?

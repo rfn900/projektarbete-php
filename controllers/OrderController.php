@@ -24,10 +24,31 @@ class OrderController
 
         switch ($page) {
             case "cart":
+                if ($action == "order")
+                    $this->placeOrder();
                 $this->cart();
                 break;
         }
     }
+
+    private function placeOrder()
+    {
+        $user = $_SESSION["user"] ?? "";
+        $customer_id = $_SESSION["id"] ?? "";
+        $formatedCart = $_SESSION["formatedCart"] ?? array();
+        if (!$user) {
+            $this->view->viewErrorMessage("You need to be logged in to place an order!");
+        } else {
+            $lastOrderId = $this->model->getLastOrderId();
+            $orderId = $lastOrderId + 1;
+
+            foreach ($formatedCart as $key => $product) {
+
+                $this->model->saveOrder($customer_id, $orderId, $product["id"]);
+            }
+        }
+    }
+
 
     private function addToCart()
     {
@@ -51,24 +72,27 @@ class OrderController
         $cart = $_SESSION['cart'] ?? array();
         $preFormatedCart = array_count_values($cart);
         $formatedCart = array();
+        $index = 0;
         foreach ($preFormatedCart as $key => $quantity) {
             // fetch from database according to id
             $product = $this->model->fetchProductById($key);
             if ($product) {
-                $formatedCart[$key]['id'] = $product['id'];
-                $formatedCart[$key]['name'] = $product['name'];
-                $formatedCart[$key]['image'] = $product['image'];
-                $formatedCart[$key]['description'] = $product['description'];
-                $formatedCart[$key]['price'] = $product['price'];
-                $formatedCart[$key]['quantity'] = $quantity;
+                $formatedCart[$index]['id'] = $product['id'];
+                $formatedCart[$index]['name'] = $product['name'];
+                $formatedCart[$index]['image'] = $product['image'];
+                $formatedCart[$index]['description'] = $product['description'];
+                $formatedCart[$index]['price'] = $product['price'];
+                $formatedCart[$index]['quantity'] = $quantity;
             }
+            $index += 1;
         }
         //echo "<pre>";
         //print_r($formatedCart);
         //echo "</pre>";
-
+        $_SESSION["formatedCart"] = $formatedCart;
         $this->view->viewHeader("Cart");
-        echo "This is cart";
+        //echo "This is cart";
+        $this->view->viewCart($formatedCart);
         $this->view->viewFooter();
     }
 

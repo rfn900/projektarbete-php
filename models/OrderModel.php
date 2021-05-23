@@ -27,6 +27,12 @@ class OrderModel
         return $customer[0] ?? false;
     }
 
+    private function getLastOrderId()
+    {
+        $statement = "SELECT MAX(invId) AS max_id FROM invoices";
+        $lastOrderId = $this->db->returnLastInsertedId($statement);
+        return $lastOrderId;
+    }
 
     public function saveOrder($customer_id, $movie_id)
     {

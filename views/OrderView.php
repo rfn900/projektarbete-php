@@ -18,28 +18,39 @@ class OrderView
     // Bra att läsa om PHP Templating och HEREDOC syntax!
     // https://css-tricks.com/php-templating-in-just-php/
 
-    public function viewOneMovie($movie)
+
+    public function viewCart($formatedCart)
     {
-        $html = <<<HTML
-            <div class="col-md-6">
-                    <div class="card m-1">
-                        <img class="card-img-top" src="$url/images/$movie[image]" 
-                             alt="$movie[title]">
-                        <div class="card-body">
-                            <div class="card-title text-center">
-                                <h4>$movie[title]</h4>
-                                <h5>Pris: $movie[price] kr</h5>
+        $cart = $_SESSION['cart'] ?? array();
+
+        if (count($cart) === 0) {
+            echo "<h4>Your cart is empty</h4>";
+        } else {
+            $cart_string = "<ul class='mt-3 col-12 list-group'>";
+            $orderTotal = 0;
+            foreach ($formatedCart as $key => $product) {
+                $cart_string .= "
+                    <li class='list-group-item mb-2' style='height: 80px'>
+                        <div class='d-flex h-100'>
+                            <img class='img-fluid' src='$product[image]' alt='image'>
+                            <div class='h-100 ml-4'>
+                               $product[name]
+                               <br />
+                               $product[price] SEK 
+                               <br />
+                               Quantity: $product[quantity] 
                             </div>
                         </div>
-                    </div>
-            </div>  <!-- col -->
+                    </li>";
+                $orderTotal += $product["price"] * $product["quantity"];
+            }
+            $orderBtn = "<a class='btn mt-2 btn-primary' href='?page=cart&action=order'>
+                        Place Order (Price: $orderTotal SEK)</a>";
+            echo $cart_string . "</ul>";
 
-        HTML;
-
-        echo $html;
+            echo $orderBtn;
+        }
     }
-
-
 
     public function viewOrderPage($movie)
     {
@@ -85,15 +96,9 @@ class OrderView
         );
     }
 
-    public function viewErrorMessage($customer_id)
+    public function viewErrorMessage($message)
     {
-        $this->printMessage(
-            "<h4>Kundnummer $customer_id finns ej i vårt kundregister!</h4>
-            <h5>Kontakta kundtjänst</h5>
-            </div> <!-- col  avslutar Beställningsformulär -->
-            ",
-            "warning"
-        );
+        $this->printMessage($message, "warning");
     }
 
     /**
