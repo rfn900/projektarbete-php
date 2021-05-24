@@ -46,8 +46,45 @@ class DashboardView
 
         echo $html;
     }
-    // Bra att läsa om PHP Templating och HEREDOC syntax!
-    // https://css-tricks.com/php-templating-in-just-php/
+
+    public function viewOneOrder($order)
+    {
+        $status = $order['shipped'] ? "Shipped" : "Not shipped";
+        $disabled = $order['shipped'] ? "disabled" : "";
+        $shippedBtn = $order['shipped'] ? "Order Sent" : "Ship Order";
+        $primaryOrNot = $order['shipped'] ? "btn-secondary" : "btn-primary";
+        $html = <<<HTML
+           
+            <li class="d-flex justify-content-between mb-2 list-group-item">                
+               <div> 
+                <h5>
+                    Order Number: $order[id]
+                </h5>
+                <p>
+                    Order status: $status
+                </p>
+                </div>
+                <div>
+
+                <a href="?page=dashboard&action=send-order&order_id=$order[id]" class="btn $disabled $primaryOrNot">$shippedBtn</a>
+                </div>
+            </li>
+
+        HTML;
+
+        echo $html;
+    }
+
+    public function viewAllOrders($orders)
+    {
+
+        echo "<h3 class='mb-4'>All Orders:</h3>";
+        echo  "<div class='col-md-6 mb-5'><ul class='list-group'>";
+        foreach ($orders as $order) {
+            $this->viewOneOrder($order);
+        }
+        echo  "</div></ul>";
+    }
 
     public function viewOneProduct($product)
     {
@@ -78,6 +115,7 @@ class DashboardView
 
     public function viewAllProducts($products)
     {
+        echo "<h3 class='mb-4'>All Products:</h3>";
         foreach ($products as $product) {
             $this->viewOneProduct($product);
         }

@@ -57,29 +57,6 @@ class OrderView
     }
 
 
-    public function viewOrderForm($movie)
-    {
-        $html = <<<HTML
-            <div class="col-md-6">
-            
-                <form action="#" method="post">
-                    <input type="hidden" name="film_id" 
-                            value="$movie[film_id]">
-
-                    <input type="number" name="customer_id" required 
-                            class="form-control form-control-lg my-2" 
-                            placeholder="Ange ditt kundnummer">
-                
-                    <input type="submit" class="form-control my-2 btn btn-lg btn-outline-success" 
-                            value="Skicka beställningen">
-                </form>
-                
-            <!-- col avslutas efter ett meddelande från viewConfirmMessage eller viewErrorMessage -->
-
-        HTML;
-
-        echo $html;
-    }
 
     public function viewConfirmMessage($order_id, $customer_name)
     {

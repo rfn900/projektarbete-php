@@ -15,6 +15,12 @@ class DashboardModel
         return $products;
     }
 
+    public function fetchAllOrders()
+    {
+        $orders = $this->db->select("SELECT DISTINCT id, shipped FROM orders");
+        return $orders;
+    }
+
     public function fetchProductById($id)
     {
         $statement = "SELECT * FROM product WHERE id = :id";
@@ -65,6 +71,15 @@ class DashboardModel
         return true;
     }
 
+    public function updateShippedStatus($order_id)
+    {
+        $statement = "UPDATE orders SET shipped=1 WHERE id=:order_id";
+        $parameters = array(
+            ":order_id" => $order_id
+        );
+        $this->db->update($statement, $parameters);
+        return true;
+    }
     /**
      * undocumented function
      *

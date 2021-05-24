@@ -15,9 +15,14 @@ class DashboardController
     private function router()
     {
         $page = $_GET['page'] ?? "";
+        $action = $_GET['action'] ?? "";
 
         switch ($page) {
             case "dashboard":
+                if ($action === "send-order") {
+                    $order_id = $_GET['order_id'] ?? "";
+                    $this->sendOrder($order_id);
+                }
                 $this->dashboard();
                 break;
             case "edit-product":
@@ -36,18 +41,26 @@ class DashboardController
      */
     public function dashboard()
     {
-        if ($_SESSION['isAdmin']) {
-            $this->view->viewHeader("Dashboard");
+        $this->view->viewHeader("Dashboard");
+        if (isset($_SESSION['isAdmin'])) {
             $this->view->createProductForm();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $this->processProductForm("create");
             }
+
             $products = $this->model->fetchAllProducts();
+            $orders = $this->model->fetchAllOrders();
+            $this->view->viewAllOrders($orders);
             $this->view->viewAllProducts($products);
-            $this->view->viewFooter();
         } else {
-            echo 'Not admin';
+            $this->view->viewErrorMessage('Not Admin');
         }
+        $this->view->viewFooter();
+    }
+
+    private function sendOrder($order_id)
+    {
+        $this->model->updateShippedStatus($order_id);
     }
 
     private function processProductForm($action)
