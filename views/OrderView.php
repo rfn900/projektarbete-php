@@ -47,15 +47,13 @@ class OrderView
             $orderBtn = "<a class='btn mt-2 btn-primary' href='?page=cart&action=order'>
                         Place Order (Price: $orderTotal SEK)</a>";
             echo $cart_string . "</ul>";
-
             echo $orderBtn;
         }
     }
 
-    public function viewOrderPage($movie)
+    public function viewOrderConfirmation($order_id, $customer_name)
     {
-        $this->viewOneMovie($movie);
-        $this->viewOrderForm($movie);
+        $this->viewConfirmMessage($order_id, $customer_name);
     }
 
 
@@ -83,14 +81,12 @@ class OrderView
         echo $html;
     }
 
-    public function viewConfirmMessage($customer, $lastInsertId)
+    public function viewConfirmMessage($order_id, $customer_name)
     {
         $this->printMessage(
-            "<h4>Tack $customer[name]</h4>
-            <p>Vi kommer att skicka filmen till följande e-post:</p>
-            <p>$customer[email]</p>
-            <p>Ditt ordernummer är $lastInsertId </p>
-            </div> <!-- col  avslutar Beställningsformulär -->
+            "<h4>Thank you, $customer_name</h4>
+            <p>Your order is currently being processed</p>
+            <p>Your order number is $order_id </p>
             ",
             "success"
         );

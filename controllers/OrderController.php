@@ -24,9 +24,9 @@ class OrderController
 
         switch ($page) {
             case "cart":
+                $this->cart();
                 if ($action == "order")
                     $this->placeOrder();
-                $this->cart();
                 break;
         }
     }
@@ -34,17 +34,28 @@ class OrderController
     private function placeOrder()
     {
         $user = $_SESSION["user"] ?? "";
-        $customer_id = $_SESSION["id"] ?? "";
+        $customer_id = $_SESSION["user"]["id"] ?? "";
+        $customer_name = $_SESSION["user"]["name"] ?? "";
+
         $formatedCart = $_SESSION["formatedCart"] ?? array();
         if (!$user) {
             $this->view->viewErrorMessage("You need to be logged in to place an order!");
         } else {
             $lastOrderId = $this->model->getLastOrderId();
             $orderId = $lastOrderId + 1;
-
+            $confirmation = true;
             foreach ($formatedCart as $key => $product) {
+                $savedOrder = $this->model->saveOrder($customer_id, $orderId, $product["id"], $product["quantity"]);
+                if (!$savedOrder)
+                    $confirmation = false;
+            }
 
-                $this->model->saveOrder($customer_id, $orderId, $product["id"]);
+            if ($confirmation) {
+                unset($_SESSION['formatedCart']);
+                unset($_SESSION['cart']);
+                $this->view->viewOrderConfirmation($orderId, $customer_name);
+            } else {
+                $this->view->viewErrorMessage("Order not sent!");
             }
         }
     }

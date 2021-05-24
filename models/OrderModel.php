@@ -27,28 +27,30 @@ class OrderModel
         return $customer[0] ?? false;
     }
 
-    private function getLastOrderId()
+    public function getLastOrderId()
     {
-        $statement = "SELECT MAX(invId) AS max_id FROM invoices";
+        $statement = "SELECT MAX(id) AS max_id FROM orders";
         $lastOrderId = $this->db->returnLastInsertedId($statement);
         return $lastOrderId;
     }
 
-    public function saveOrder($customer_id, $movie_id)
+    public function saveOrder($customer_id, $order_id, $product_id, $quantity)
     {
-        $customer = $this->fetchCustomerById($customer_id);
-        if (!$customer) return false;
+        $shipped = 0;
+        $statement = "INSERT INTO orders (id, product_id, user_id, shipped, quantity)  
+                      VALUES (:order_id, :product_id, :customer_id, :shipped, :quantity)";
 
-        $statement = "INSERT INTO orders (customer_id, film_id)  
-                      VALUES (:customer_id, :film_id)";
         $parameters = array(
+            ':order_id' => $order_id,
+            ':product_id' => $product_id,
             ':customer_id' => $customer_id,
-            ':film_id' => $movie_id
+            ':shipped' => $shipped,
+            ':quantity' => $quantity
         );
 
         // Ordernummer
         $lastInsertId = $this->db->insert($statement, $parameters);
 
-        return array('customer' => $customer, 'lastInsertId' => $lastInsertId);
+        return array('customer' => $customer_id, 'lastInsertId' => $lastInsertId);
     }
 }
