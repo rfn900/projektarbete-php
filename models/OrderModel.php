@@ -15,7 +15,6 @@ class OrderModel
         $statement = "SELECT * FROM product WHERE id = :id";
         $params = array(":id" => $id);
         $product = $this->db->select($statement, $params);
-        //print_r($movie);
         return $product[0] ?? false;
     }
 
