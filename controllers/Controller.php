@@ -85,9 +85,9 @@ class Controller
   private function processLoginForm()
   {
     $username = $this->sanitize($_POST['username']);
+    $errorMessage = $username ? "login failed" : "Field cannot be empty";
 
     $user = $this->model->loginUser($username);
-    $errorMessage = $user ? "login failed" : "Field cannot be empty";
 
     if ($user) {
       // auth successful
