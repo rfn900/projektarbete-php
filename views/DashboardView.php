@@ -78,7 +78,7 @@ class DashboardView
     public function viewAllOrders($orders)
     {
 
-        echo "<h3 class='mb-4'>All Orders:</h3>";
+        echo "<h3 class='col-md-12 mb-4'>All Orders:</h3>";
         echo  "<div class='col-md-6 mb-5'><ul class='list-group'>";
         foreach ($orders as $order) {
             $this->viewOneOrder($order);
@@ -115,13 +115,18 @@ class DashboardView
 
     public function viewAllProducts($products)
     {
-        echo "<h3 class='mb-4'>All Products:</h3>";
+        echo "<h3 class='mb-4 col-md-12'>All Products:</h3>";
         foreach ($products as $product) {
             $this->viewOneProduct($product);
         }
     }
 
-    public function viewConfirmMessage($action)
+    public function viewErrorMessage($message)
+    {
+        echo "<h4 class='my-2 alert col-md-12 alert-warning'>$message</h4>";
+    }
+
+    public function viewUpdateConfirmMessage($action)
     {
         $message = $action === "edit" ? "Product updated" : "Product Created";
         $this->printMessage(
@@ -131,7 +136,7 @@ class DashboardView
         );
     }
 
-    public function viewErrorMessage($action)
+    public function viewUpdatErrorMessage($action)
     {
         $message = $action === "edit" ? "Update failed" : "Product updated";
         $this->printMessage(

@@ -42,7 +42,7 @@ class DashboardController
     public function dashboard()
     {
         $this->view->viewHeader("Dashboard");
-        if (isset($_SESSION['isAdmin'])) {
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin']) {
             $this->view->createProductForm();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $this->processProductForm("create");
@@ -73,15 +73,16 @@ class DashboardController
             "description" => $this->sanitize($_POST['description']),
             "price" => $this->sanitize($_POST['price'])
         );
+
         if ($action === "create")
             $confirm = $this->model->createProduct($product);
         else if ($action === "edit")
             $confirm = $this->model->updateProduct($product);
 
         if ($confirm) {
-            $this->view->viewConfirmMessage($action);
+            $this->view->viewUpdateConfirmMessage($action);
         } else {
-            $this->view->viewErrorMessage($action);
+            $this->view->viewUpdateErrorMessage($action);
         }
     }
 

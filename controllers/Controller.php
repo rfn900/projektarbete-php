@@ -69,12 +69,16 @@ class Controller
   {
     $user = $this->sanitize($_POST['username']);
 
-    $confirm = $this->model->saveUser($user);
+    if ($user) {
+      $confirm = $this->model->saveUser($user);
 
-    if ($confirm) {
-      $this->view->viewConfirmMessage();
+      if ($confirm) {
+        $this->view->viewConfirmMessage();
+      } else {
+        $this->view->viewErrorMessage("User already registered");
+      }
     } else {
-      $this->view->viewErrorMessage("Användaren finns redan");
+      $this->view->viewErrorMessage("This field cannot be empty");
     }
   }
 
@@ -83,6 +87,7 @@ class Controller
     $username = $this->sanitize($_POST['username']);
 
     $user = $this->model->loginUser($username);
+    $errorMessage = $user ? "login failed" : "Field cannot be empty";
 
     if ($user) {
       // auth successful
@@ -95,7 +100,7 @@ class Controller
       }
       header("Location: ?");
     } else {
-      $this->view->viewErrorMessage("login failed");
+      $this->view->viewErrorMessage($errorMessage);
     }
   }
 
