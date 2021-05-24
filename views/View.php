@@ -22,8 +22,8 @@ class View
               <form method="post" action="">
                 <div class="form-group">
                   <label for="username">
-                  <input type="text" id="username" name="username"/>
-                  <input type="submit" value="skapa användare">
+                  <input type="text" required id="username" name="username"/>
+                  <input type="submit" value="Create Account">
                 </div>
               </form>
             </div>  <!-- col -->
@@ -85,9 +85,10 @@ class View
                 <div class="form-group">
                   <label for="username">
                   <input type="text" id="username" name="username"/>
-                  <input type="submit" value="logga in">
+                  <input type="submit" value="Login">
                 </div>
               </form>
+            <a href="?page=register">Not Registered? Create Account Here</a>
             </div>  <!-- col -->
 
         HTML;
@@ -112,7 +113,7 @@ class View
                             </div>
                             <form action="?action=addtocart" method="POST">
                                 <input type="text" hidden value="$product[id]" name="id"/>
-                                <input type="submit" class="btn btn-primary" value="Lägg till varukorg">
+                                <input type="submit" class="btn btn-primary" value="Add to cart">
                             </form>
                         </div>
                     </div>

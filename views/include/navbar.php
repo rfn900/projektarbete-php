@@ -15,7 +15,7 @@ $html = <<<HTML
                 </a>
 
             </div> 
-            <h1 class="text-center">
+            <h1 class="my-5 text-center">
                 <a href="index.php">
                     Webbshop
                 </a>
