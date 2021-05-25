@@ -1,18 +1,18 @@
 # projektarbete-php
 
 ## Kravspecifikation
-1. - [ ] Ni måste använda Dependency injection vid utformningen av lösningen.
-2. - [ ] Systemet skall kunna hantera produkter, kunder och beställningar.
-3. - [ ] En kund skall kunna skapa ett konto och logga in i butiken.
-4. - [ ] En kund skall kunna beställa en eller flera produkter.
-5. - [ ] En admin skall kunna logga in i en adminpanel.
+1. - [x] Ni måste använda Dependency injection vid utformningen av lösningen.
+2. - [x] Systemet skall kunna hantera produkter, kunder och beställningar.
+3. - [x] En kund skall kunna skapa ett konto och logga in i butiken.
+4. - [x] En kund skall kunna beställa en eller flera produkter.
+5. - [x] En admin skall kunna logga in i en adminpanel.
 
 6. En admin skall kunna göra följande via adminpanelen:
-   - [ ] Skapa nya produkter.
-   - [ ] Uppdatera befintliga produkter.
-   - [ ] Ta bort produkter.
-   - [ ] Se alla beställningar.
-   - [ ] Ändra status på en beställning till ”Skickad”.
+   - [x] Skapa nya produkter.
+   - [x] Uppdatera befintliga produkter.
+   - [x] Ta bort produkter.
+   - [x] Se alla beställningar.
+   - [x] Ändra status på en beställning till ”Skickad”.
 
 ## Skriftlig Inlämning (Individuell inlämning)
   * Skriv en individuell rapport (valfritt antal sidor).
